@@ -48,3 +48,7 @@
     margin: 0;
 }
 
+.suspender-container{
+    text-align: end;
+    margin-bottom: 10px;
+}

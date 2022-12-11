@@ -19,13 +19,7 @@ export class EmprendimientoDataComponent implements OnInit {
   @Input('esMiEmprendimiento') esMiEmprendimiento:Boolean = false ;
   
   
-  constructor(private route:ActivatedRoute, private router:Router){
-    this.route.params.subscribe((params) => {
-      let token = localStorage.getItem("token") || "";
-      let decodeToken:any = jwt_decode(token);
-      /* this.esMiEmprendimiento = decodeToken.idEmprendimiento == params["id"];  */
-    });
-  }
+  constructor(private route:ActivatedRoute, private router:Router){}
   
   ngOnInit(){
   }

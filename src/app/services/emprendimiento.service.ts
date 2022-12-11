@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { formDonacion } from '../components/donacion/donacion.component';
 import { BodyPagosCategorias } from '../components/pagos/pagos.component';
-import { donacion, donacionRealizada, emprendimientoResp } from '../interfaces/responseType';
+import { donacion, donacionRealizada, emprendimientoResp, SuspensionEmprendimiento } from '../interfaces/responseType';
 
 
 
@@ -25,8 +25,8 @@ export class EmprendimientoService {
 
   constructor(private http: HttpClient) {}
   
-  obtenerDatosDelEmprendimiento(idEmprendimiento:String){
-    return this.http.get<emprendimientoResp>(urlAPI+idEmprendimiento,httpOptions);
+  obtenerDatosDelEmprendimiento(idEmprendimiento:String, externo:string="false"){
+    return this.http.get<emprendimientoResp>(urlAPI+idEmprendimiento+"?externo="+externo,httpOptions);
   }
 
   obtenerDonaciones(idEmprendimiento:String){
@@ -49,6 +49,13 @@ export class EmprendimientoService {
     return this.http.put<emprendimientoResp>(urlAPI+"categorias-pagos",body,httpOptions);
   }
 
+  obtenerTodosLosEmprendimientos(){
+    return this.http.get<Array<emprendimientoResp>>(urlAPI+"obtener-emprendimientos");
+  }
+
+  suspenderEmprendimiento(idEmprendimiento:string,body:string){
+    return this.http.put<SuspensionEmprendimiento>(urlAPI+"suspender-emprendimiento/"+idEmprendimiento,{mensajeSuspension:body},httpOptions);
+  }
 
   
 

@@ -1,0 +1,94 @@
+main{
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+}
+
+.container-ajustado {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-buscador {
+    width: 100%;
+}
+
+.container-buscador input:first-child {
+    width: 50%;
+    margin-right: 20px;
+}
+
+.container-buscador input:last-child {
+    width: 20%;
+}
+
+.container-emprendimientos {
+    margin-top: 40px;
+}
+
+.card-emprendimiento {
+    background-color: white;
+    width: 200px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.card-emprendimiento p {
+    text-transform: capitalize;
+}
+
+.container-emprendimientos-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    gap: 40px;
+}
+
+.container-categorias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+} 
+
+.container-categoria{
+    background-color: white;
+    padding: 10px 20px;
+    width: 160px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-categoria:hover {
+    cursor: pointer;
+    background-color: rgb(219, 216, 216);
+}
+
+.container-categoria p{
+    margin: 0;
+}
+
+.container-mas-vistos-donaciones span{
+    margin-right: 20px;
+}
+
+.container-mas-vistos-donaciones span:hover{
+    cursor: pointer;
+    color: white;
+}
+
+.container-mas-vistos-donaciones {
+    margin-top: 10px;
+}
+
+.underline {
+    text-decoration: underline;
+}

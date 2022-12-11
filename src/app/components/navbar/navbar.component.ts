@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
+import { LoginService } from 'src/app/services/login.service';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class NavbarComponent implements OnInit, OnChanges{
     }
   ]
 
-  constructor(private router: Router) {
+  constructor(private router: Router,private loginService:LoginService) {
     this.router.events.subscribe((val) => {
       if(val instanceof NavigationEnd){
         this.seleccionarRutas();
@@ -46,7 +47,10 @@ export class NavbarComponent implements OnInit, OnChanges{
     if(logeado == "true"){
       this.logeado = true;
       let token = localStorage.getItem("token") || "";
-      let decodeToken:any = jwt_decode(token);  //armar interface de token
+      let decodeToken:any = {};
+      if(token !== ''){
+        decodeToken = jwt_decode(token);  //armar interface de token
+      }
       if(decodeToken.esAdmin){
         this.opciones = [
           {
@@ -94,8 +98,7 @@ export class NavbarComponent implements OnInit, OnChanges{
   }
 
   cerrarSesion(){
-    localStorage.removeItem("token");
-    localStorage.setItem("logeado",JSON.stringify(false));
+    this.loginService.desloguearse();
     this.logeado = false;
   }
 }

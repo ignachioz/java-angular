@@ -9,13 +9,13 @@ import { RegistrarEmprendimientoComponent } from './components/registrar-emprend
 import { AdminComponent } from './components/admin/admin.component';
 import { EditarCategoriaComponent } from './components/editar-categoria/editar-categoria.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ExplorarComponent } from './components/explorar/explorar.component';
 
 
 const routes: Routes = [
   {
     path: "emprendimiento/:id",
-    component: HomeComponent,
-    canActivate: [AuthGuardService]
+    component: HomeComponent
   },
   {
     path: "login",
@@ -44,6 +44,10 @@ const routes: Routes = [
     path: 'admin/editar-categoria/:id',
     component: EditarCategoriaComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'explorar',
+    component: ExplorarComponent
   },
   {
     path: '404',

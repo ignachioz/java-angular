@@ -4,6 +4,9 @@
         <span class="sr-only">Loading...</span>
     </div>
     <div class="div-align-center" *ngIf="existe && !cargando">
+        <div class="suspender-container" *ngIf="soyAdmin">
+            <app-admin-emprendimiento-suspendido></app-admin-emprendimiento-suspendido>
+        </div>
         <section class="section-image">
             <img src={{emprendimiento.banner}} alt="imagen del emprendimiento">
         </section>

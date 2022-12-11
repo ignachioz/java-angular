@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   existe: Boolean = false;
   cargando:boolean = true;
   esMiEmprendimiento:Boolean = false ;
+  soyAdmin:boolean = false;
   constructor(
     private emprendimientoService: EmprendimientoService,
     private router: ActivatedRoute,
@@ -25,8 +26,11 @@ export class HomeComponent implements OnInit {
   ) {
     this.router.params.subscribe((params) => {
       let token = localStorage.getItem("token") || "";
-      let decodeToken:any = jwt_decode(token);
-      this.esMiEmprendimiento = decodeToken.idEmprendimiento == params["id"]; 
+      if(token !== ''){
+        let decodeToken:any = jwt_decode(token);
+        this.soyAdmin = decodeToken.esAdmin;
+        this.esMiEmprendimiento = decodeToken.idEmprendimiento == params["id"]; 
+      }
     });
   }
 
@@ -38,11 +42,16 @@ export class HomeComponent implements OnInit {
     this.router.params.subscribe((params) => {
       id = params['id'];
     });
-
-    this.emprendimientoService.obtenerDatosDelEmprendimiento(id).subscribe({
+    let externo = "false";
+    if(!this.esMiEmprendimiento){
+      externo = "true";
+    }
+    this.emprendimientoService.obtenerDatosDelEmprendimiento(id,externo).subscribe({
       next: (data) => {
+        console.log(data);
         if(data.mensajeSuspension !== "" && !this.esMiEmprendimiento){
-          this.route.navigate(["/404"]);
+          this.existe = false;
+          this.cargando = false;
           return;
         }
         this.loginService.setEmprendimiento(data);

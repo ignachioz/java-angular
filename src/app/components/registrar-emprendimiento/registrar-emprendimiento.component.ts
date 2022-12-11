@@ -82,7 +82,6 @@ export class RegistrarEmprendimientoComponent implements OnInit {
     this.userService.registrarUsuarioEmprendimiento(this.emprendimiento)
     .subscribe({
       next: (data) =>{
-        console.log(data);
         localStorage.setItem("token", data.msg);
         localStorage.setItem("logeado",JSON.stringify(true));
         let token = localStorage.getItem("token") || "";

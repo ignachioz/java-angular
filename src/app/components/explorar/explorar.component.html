@@ -1,0 +1,41 @@
+<main>
+    <div class="spinner-border d-flex justify-content-center" role="status" *ngIf="cargando">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="container-ajustado" *ngIf="!cargando">
+        <span>Categorias</span>
+        <section class="container-categorias">   
+            <article *ngFor="let categoria of categorias">
+                <div (click)="porCategoria(categoria.nombre)" class="container-categoria">
+                    <p>{{categoria.nombre}}</p>
+                </div>
+            </article>
+        </section>
+        <section class="container-emprendimientos">
+            <div class="container-buscador">
+                <input type="text" placeholder="Ingrese el emprendimiento a buscar">
+                <input type="button" value="BUSCAR">
+            </div>
+            <div>
+                <div class="container-mas-vistos-donaciones">
+                    <span (click)="masVistos()" [ngClass]="{'underline':meClickearon=='mas-vistos'}">Mas vistos</span>
+                    <span (click)="masDonaciones()" [ngClass]="{'underline':meClickearon=='mas-donaciones'}">Mas manguitos recibidos</span>
+                </div>
+                <div class="container-emprendimientos-list">
+                    <article *ngFor="let emprendimiento of emprendimientosFiltrados" class="card-emprendimiento">
+                        <p>{{emprendimiento.nombre}}</p>
+                        <p>{{emprendimiento.categorias[0].nombre}}</p>
+                        <div class="d-flex">
+                            <img src="/assets/manguito.jpg" alt="manguito" style="width: 20px; height: 20px;">
+                            <span>x {{emprendimiento.cantidadManguitosRecibidos}}recibidos</span>
+                        </div>
+                        <button class="btn btn-dark w-50" (click)="irAlEmprendimiento(emprendimiento.id)">Ir</button>
+                    </article>
+                    <article *ngIf="emprendimientosFiltrados.length === 0">
+                        <p class="font-weight-bold">No hay emprendimientos para el filtro aplicado</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

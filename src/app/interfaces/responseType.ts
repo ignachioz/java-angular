@@ -44,3 +44,8 @@ export interface donacionRealizada{
     msg:String,
     status: String
 }
+
+export interface SuspensionEmprendimiento{
+    status:string,
+    msg:string
+}
