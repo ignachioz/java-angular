@@ -1,0 +1,100 @@
+.blur{
+    filter: blur(5px);
+}
+
+.container-categorias{
+    display: flex;
+    gap:20px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.container-categoria{
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 0.5px solid black;
+    overflow: hidden;
+}
+
+.contaier-nombre-categoria{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contaier-nombre-categoria p {
+    margin: 0;
+}
+
+.container-categoria .container-botones{
+    width: 20%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-categoria .container-botones button{
+    border: none;
+    background-color: white;
+}
+
+main{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    
+}
+
+main .section-categorias{
+    background-color: #f09a9c;
+    width: 70%;
+    margin-top: 40px;
+    flex-direction: column;
+    border-radius: 10px;
+    position: absolute;
+}
+
+main .section-categorias > p {
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.boton-crear-categoria {
+    margin-top: 20px;
+    text-align: end;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.container-eliminar{
+    background-color: white;
+    margin: auto 0;
+    position: relative;
+    border-radius: 8px;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-eliminar button:first-child {
+    align-self: flex-end;
+    border: none;
+    background-color: white;
+}
+
+.container-eliminar button:last-child {
+    border: 1px solid black;
+    background-color: white;
+}

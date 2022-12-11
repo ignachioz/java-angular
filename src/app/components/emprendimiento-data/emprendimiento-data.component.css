@@ -1,0 +1,66 @@
+.div-container-section {
+  display: flex;
+}
+
+.div-container-left,
+.div-container-right {
+  height: 50%;
+  width: 50%;
+}
+
+.div-container-right{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+
+.div-background-white{
+    background-color: white;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead th {
+  width: 25%;
+}
+
+
+.container-redes{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+}
+
+.container-redes span{
+    width: 80%;
+}
+
+.container-categorias{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.container-categorias span{
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.article-component-donacion{
+  background-color: white;
+  margin: 10px 0px;
+  border: 1px solid black;
+  padding: 10px;
+}

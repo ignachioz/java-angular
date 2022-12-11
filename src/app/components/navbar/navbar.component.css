@@ -1,0 +1,41 @@
+.img-manguito{
+    width: 48px;
+    height: 48px;
+}
+
+.container-nav-right {
+    display: flex;
+}
+
+.container-nav-right ul{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.container-nav-right ul li{
+    padding: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.container-nav-right ul li a{
+    text-decoration: none;
+    color: white;
+}
+
+/* .container-nav-right ul li:hover{
+    background-color: rgb(168, 168, 168);
+    border-radius: 10px;
+    cursor: pointer;
+} */
+
+.container-img{
+    display: flex;
+}
+
+nav{
+    color: white;
+    display: flex;
+    justify-content: space-around;
+}

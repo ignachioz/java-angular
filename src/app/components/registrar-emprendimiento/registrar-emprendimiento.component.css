@@ -1,0 +1,14 @@
+.main-container-register{
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.input-text-area textarea{
+    resize: none;
+}
+
+.form-container{
+    border-radius: 10px;
+}

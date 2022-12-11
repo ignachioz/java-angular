@@ -1,0 +1,31 @@
+<main class="main-container">
+    <div class="spinner-border d-flex justify-content-center" role="status" *ngIf="cargando">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="div-align-center" *ngIf="existe && !cargando">
+        <section class="section-image">
+            <img src={{emprendimiento.banner}} alt="imagen del emprendimiento">
+        </section>
+        <section>
+            <article class="article-name-category">
+                <h2 style="margin-bottom: 0px;">{{emprendimiento.nombre}}</h2>
+                <h4 style="margin-top: 0px;">{{emprendimiento.categorias ? emprendimiento.categorias[0].nombre : null}}</h4>
+            </article>
+            <article class="article-container-ul-nav">
+                <ul class="ul-container-nav">
+                    <li><a>Planes</a></li>
+                    <li><a routerLink="/perfil" style="text-decoration: none;">Perfil</a></li>
+                    <li><a>Post</a></li>
+                </ul>
+            </article>
+        </section>
+        <section class="section-container-articles-under"> 
+            <app-emprendimiento-data [emprendimiento]="emprendimiento"></app-emprendimiento-data>
+        </section>
+        
+    </div>
+
+    <div *ngIf="!existe && !cargando">
+        <p class="text-uppercase font-weight-bold text-center">Emprendimiento Inexistente</p>
+    </div>
+</main>

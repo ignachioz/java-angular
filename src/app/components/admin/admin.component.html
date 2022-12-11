@@ -1,0 +1,46 @@
+<main>
+    <div class="spinner-border d-flex justify-content-center" role="status" *ngIf="cargando">
+        <span class="sr-only">Loading...</span>
+    </div>
+  <section class="section-categorias" [ngClass]="{'blur':mostrarEliminar}" *ngIf="!cargando">
+    <div
+    *ngIf="feedback.mensaje"
+    class="alert alert-dismissible fade show"
+    [ngClass]="feedback.class"
+    role="alert"
+  >
+    <strong>{{ feedback.mensaje }}</strong>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="alert"
+      aria-label="Close"
+      (click)="feedback.mensaje = ''"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+    <p>Categorias Actuales:</p>
+    <div class="col container-categorias mt-2">
+      <div class="container-categoria" *ngFor="let categoria of categorias">
+        <div class="contaier-nombre-categoria">
+          <p>{{ categoria.nombre }}</p>
+        </div>
+        <div class="container-botones">
+          <button [disabled]="mostrarEliminar" (click)="editarCategoria(categoria.id)">✍️</button>
+          <button [disabled]="mostrarEliminar" (click)="borrarCategoria(categoria)">🗑️</button>
+        </div>
+      </div>
+    </div>
+    <div class="boton-crear-categoria">
+        <input [disabled]="mostrarEliminar" class="btn btn-light" type="submit" value="CREAR CATEGORIA" (click)="crearCategoria()">
+    </div>
+</section>
+<div *ngIf="mostrarEliminar" class="container-eliminar">
+    <button (click)="cerrarEliminar()">❎</button>
+    <p>Estas seguro que desea eliminar la categoria: "{{categoriaEliminar.nombre}}"</p>
+    <button (click)="confirmarEliminacionCategoria()">CONFIRMAR</button>
+</div>
+</main>
+
+

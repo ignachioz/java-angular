@@ -1,0 +1,68 @@
+.imagen-manguito{
+    width: 32px;
+    height: 32px;
+}
+
+.container-div-row-two{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.container-div-row-two input, .container-div-row-two select{
+    border: none;
+    padding: 5px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid black;
+    color:black;
+}
+
+.container-div-row-one{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.div-container-btn-donar{
+    display: flex;
+    justify-content: center;
+}
+
+.button-donar{
+    margin-top: 10px;
+    border: none;
+    background-color: aquamarine;
+    border-radius: 4px;
+    padding: 10px;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.button-donar:hover{
+    cursor: pointer;
+    background-color: aqua;
+}
+
+.container-div-row-one .buttons{
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 20px;
+}
+
+.container-div-row-one .buttons:hover{
+    cursor: pointer;
+}
+
+.container-btns{
+    margin-left: 15px;
+    border-radius: 10px;
+}

@@ -1,0 +1,17 @@
+<span>TOP DONADORES</span>
+<table class="w-100" style="height: 100%">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Manguitos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let donacion of donaciones; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ donacion.nombre==""?"Anonimo":donacion.nombre }}</td>
+      <td>{{ donacion.cantidad }}</td>
+    </tr>
+  </tbody>
+</table>

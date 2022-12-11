@@ -1,0 +1,12 @@
+<nav>
+    <div class="container-img">
+        <a routerLink="/"><img class="img-manguito" src="../../../assets/manguito.jpg" alt="manguito imagen"></a>
+        <h2>Manguito</h2>
+    </div>
+    <div class="container-nav-right">
+        <ul>        
+            <li *ngFor="let opcion of opciones"><a [routerLink]="opcion.url">{{opcion.titulo}}</a></li>
+            <li><a routerLink="/login" (click)="cerrarSesion()" *ngIf="logeado">Cerrar sesion</a></li> 
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,66 @@
+<article *ngIf="esMiEmprendimiento == false" class="article-component-donacion">
+    <app-donacion [emprendimiento]="emprendimiento"></app-donacion>
+</article>
+<div class="div-container-section">
+    <div class="div-container-left">
+            <div>
+                <span>OBJETIVO</span>
+                <div class="div-background-white">
+                    <p>{{emprendimiento.descripcion}}</p>
+                </div>
+            </div>
+            <div>
+                <span>CATEGORIAS</span>
+                <div class="div-background-white container-categorias">
+                    <span *ngFor="let categoria of emprendimiento.categorias">{{categoria.nombre | uppercase}}</span>
+                </div>
+            </div>
+            <div>
+                <span>REDES</span>
+                <div class="div-background-white container-redes">
+                    <div *ngFor="let red of emprendimiento.redes">
+                        <span *ngIf="red.descripcion">{{red.tipoRedSocial.nombre}}: {{red.descripcion}}</span>
+                    </div>
+                    <p *ngIf="emprendimiento.redes && emprendimiento.redes.length === 0">No tiene redes</p>
+                </div>
+            </div>
+
+    </div>
+    <div class="div-container-right">
+        <app-top-donadores></app-top-donadores>
+    </div>
+
+</div>
+<article>
+    <span>MANGUITOS DONADOS</span>
+    <table class="" style="width: 100%;">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+        </tr>
+        </tbody>
+    </table>
+</article>

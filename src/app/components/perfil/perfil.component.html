@@ -1,0 +1,154 @@
+<div class="spinner-border d-flex justify-content-center" role="status" *ngIf="cargando">
+    <span class="sr-only">Loading...</span>
+</div>
+<section class="font-weight-bold" *ngIf="!cargando">
+  <div
+    *ngIf="feedback.mensaje"
+    class="alert alert-dismissible fade show"
+    [ngClass]="feedback.class"
+    role="alert"
+  >
+    <strong>{{ feedback.mensaje }}</strong>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="alert"
+      aria-label="Close"
+      (click)="feedback.mensaje = ''"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form
+    class="bg-white p-2 form-container"
+    method="post"
+    (ngSubmit)="actualizarEmprendimiento()"
+  >
+    <p class="text-center underline">Datos del usuario</p>
+    <div class="form-row mt-1">
+      <div class="col">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Ingrese su email"
+          name="email"
+          [(ngModel)]="emprendimiento.duenio.email"
+        />
+      </div>
+      <div class="col">
+        <label for="dni">DNI</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Ingrese su DNI"
+          name="dni"
+          [(ngModel)]="emprendimiento.duenio.dni"
+        />
+      </div>
+    </div>
+    <div class="form-row mt-2">
+      <div class="col">
+        <label for="nacimiento">Fecha de nacimiento</label>
+        <input
+          type="date"
+          class="form-control"
+          name="nacimiento"
+          [(ngModel)]="emprendimiento.duenio.fechaNac"
+        />
+      </div>
+    </div>
+    <p class="text-center mt-4">Datos del emprendimiento</p>
+    <div class="form-row mt-2">
+      <div class="col">
+        <label for="" class="mr-2">Top donadores:</label>
+        <label for="">Si</label>
+        <input
+          type="radio"
+          name="topDonadores"
+          value="true"
+          [(ngModel)]="emprendimiento.topDonadores"
+          class="mr-2"
+        />
+        <label for="">No</label>
+        <input
+          type="radio"
+          name="topDonadores"
+          value="false"
+          [(ngModel)]="emprendimiento.topDonadores"
+          class="mr-2"
+        />
+      </div>
+    </div>
+    <div class="form-row mt-2">
+      <div class="col">
+        <label for="" class="mr-2">Manguitos recibidos:</label>
+        <label for="">Si</label>
+        <input
+          type="radio"
+          name="manguitosRecibidos"
+          value="true"
+          [(ngModel)]="emprendimiento.mangitosRecibidos"
+          class="mr-2"
+        />
+        <label for="">No</label>
+        <input
+          type="radio"
+          name="manguitosRecibidos"
+          value="false"
+          [(ngModel)]="emprendimiento.mangitosRecibidos"
+          class="mr-2"
+        />
+      </div>
+    </div>
+    <div class="form-row mt-2">
+      <div class="col">
+        <label for="precio-manguito">Precio manguito</label>
+        <input
+          type="text"
+          placeholder="Ingrese el precio del manguito"
+          [(ngModel)]="emprendimiento.precioManguito"
+          name="precio-manguito"
+          class="form-control"
+        />
+      </div>
+      <div class="col">
+        <label for="">Banner</label>
+        <input
+          type="file"
+          name="file"
+          class="form-control"
+          (change)="capturarFile($event)"
+        />
+      </div>
+    </div>
+    <div class="form-row mt-2">
+      <div class="col-6" *ngFor="let redSocial of emprendimiento.redes">
+        <label for="precio-manguito">{{redSocial.tipoRedSocial.nombre}}</label>
+        <input
+          type="text"
+          placeholder="Ingrese la descripcion de su red {{redSocial.tipoRedSocial.nombre}}" 
+          [(ngModel)]="redSocial.descripcion"
+          name={{redSocial.tipoRedSocial.nombre}}
+          class="form-control"
+        />
+      </div>
+    </div>
+    <div class="form-row mt-2">
+      <div class="col input-text-area">
+        <label for="descripcion">Descripción</label>
+        <textarea
+          type="text"
+          class="form-control"
+          placeholder="Ingrese descripcion del emprendimiento"
+          name="descripcion"
+          [(ngModel)]="emprendimiento.descripcion"
+        >
+        </textarea>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+      <input class="btn btn-primary w-50" type="submit" value="Actualizar" />
+    </div>
+  </form>
+</section>

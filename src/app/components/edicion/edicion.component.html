@@ -1,0 +1,7 @@
+<main>
+    <app-barra-lateral (elementoClickeado)="elementoClickeado($event)"></app-barra-lateral>
+    <app-pagos *ngIf="clickEnElemento=='pagos'"></app-pagos>
+    <app-planes *ngIf="clickEnElemento=='planes'"></app-planes>
+    <app-donaciones-perfil *ngIf="clickEnElemento=='donaciones'"></app-donaciones-perfil>
+    <app-perfil *ngIf="clickEnElemento=='perfil'"l></app-perfil> 
+</main>

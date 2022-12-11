@@ -1,0 +1,38 @@
+.container-categoria{
+    background-color: black;
+    color: white;
+    width: 200px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.container-categoria input{
+    align-self: flex-end;
+}
+
+.container-categoria input:hover{
+    cursor: pointer;
+}
+
+.container-categorias{
+    display: flex;
+    gap:20px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.container-section{
+    width: 90vw;
+}
+
+.form-container{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.row-container-categorias{
+    flex-direction: column;
+    align-items: center;
+}

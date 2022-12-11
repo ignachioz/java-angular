@@ -1,0 +1,41 @@
+.main-container {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container section > p {
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+
+.section-container {
+    width: 50%;
+}
+
+.div-container {
+    background-color: white;
+    border:1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+}
+
+.container-input {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.boton-crear-categoria{
+    width: 35%;
+}
+
+.boton-crear-categoria input{
+    width: 100%;
+}

@@ -1,0 +1,73 @@
+<main class="main-container-register font-weight-bold">
+  <section>
+    <div *ngIf="feedback.mensaje" class="alert alert-dismissible fade show" [ngClass]="feedback.class" role="alert">
+      <strong>{{feedback.mensaje}}</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="feedback.mensaje = ''">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form class="bg-white p-2 form-container" method="post" (ngSubmit)="registrarse()">
+      <p class="text-center underline">Datos del usuario</p>
+      <div class="form-row mt-1">
+        <div class="col">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" placeholder="Ingrese su email" name="email" [(ngModel)]="emprendimiento.email"/>
+        </div>
+        <div class="col">
+          <label for="dni">DNI</label>
+          <input type="text" class="form-control" placeholder="Ingrese su DNI" name="dni" [(ngModel)]="emprendimiento.dni"/>
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+          <label for="contaseña">Contraseña</label>
+          <input type="text" class="form-control" placeholder="Ingrese su contraseña" name="contraseña" [(ngModel)]="emprendimiento.password"/>
+        </div>
+        <div class="col">
+          <label for="contraseña-confirmacion">Repetir contraseña</label>
+          <input type="text" class="form-control" placeholder="Confirme su contraseña" name="contraseñaconfirmacion" [(ngModel)]="emprendimiento.repetirContrasenia"/>
+        </div>
+      </div>
+      <div class="form-row mt-2">
+        <div class="col">
+          <label for="nacimiento">Fecha de nacimiento</label>
+          <input type="date" class="form-control" name="nacimiento" [(ngModel)]="emprendimiento.fechaNac"/>
+        </div>
+      </div>
+      <p class="text-center mt-4">Datos del emprendimiento</p>
+      <div class="form-row mt-2">
+        <div class="col">
+          <label for="emprendimiento">Nombre del emprendimiento</label>
+          <input type="text" class="form-control" placeholder="Ingrese nombre del emprendimiento" name="emprendimiento" [(ngModel)]="emprendimiento.nombre"/>
+        </div>
+        <div class="col">
+          <label for="emprendimiento">Precio del manguito</label>
+          <input type="text" class="form-control" placeholder="Ingrese el precio del manguito" name="precioManguito" [(ngModel)]="emprendimiento.precioManguito"/>
+        </div>
+      </div>
+      <div class="form-row mt-2">
+        <div class="col">
+          <label for="categorias">Categorias del emprendimiento</label>
+          <select name="categorias"  multiple class="w-100" [(ngModel)]="emprendimiento.categorias">
+            <option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="medioDePago">Medios de pagos del emprendimiento</label>
+          <select name="medios-de-pagos" multiple class="w-100" [(ngModel)]="emprendimiento.mediosDePagos">
+            <option [value]="medioDePago.id" *ngFor="let medioDePago of mediosDePagos">{{medioDePago.nombre}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row mt-2">
+        <div class="col input-text-area">
+          <label for="descripcion">Descripción</label>
+          <textarea type="text" class="form-control" placeholder="Ingrese descripcion del emprendimiento" name="descripcion" [(ngModel)]="emprendimiento.descripcion"> </textarea>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center mt-4">
+        <input class="btn btn-primary w-50" type="submit" value="Registrarse">
+      </div>
+    </form>
+  </section>
+</main>

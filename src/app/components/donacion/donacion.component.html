@@ -1,0 +1,34 @@
+<div *ngIf="feedback.mensaje" class="alert alert-dismissible fade show" [ngClass]="feedback.class" role="alert">
+    <strong>{{feedback.mensaje}}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="feedback.mensaje = ''">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<form action="" method="post" (ngSubmit)="realizarDonacion()">
+    <div class="container-div-row-one">
+        <img class="imagen-manguito" src="assets/manguito.jpg" alt="manguito">
+        <span>X</span>
+        <div class="container-btns">
+            <span class="buttons" (click)="menosManguito()">-</span>
+            <span>{{donacion.cantidad}}</span>
+            <span class="buttons" (click)="masManguito()">+</span>
+        </div>
+    </div>
+    <div class="container-div-row-two">
+    <input type="text" placeholder="Ingrese su nombre" [(ngModel)]="donacion.nombre" name="nombre"/>
+    <input type="text" placeholder="Ingrese su contacto(email o telefono)" [(ngModel)]="donacion.contacto" name="contacto"/>
+    <input type="text" placeholder="Mensaje que quiere dejarle al emprendedor" [(ngModel)]="donacion.mensaje" name="mensaje"/>
+    <select name="metodoDePago" [(ngModel)]="donacion.medioDePago">
+        <option
+        value="{{ pago.id }}"
+        *ngFor="let pago of emprendimiento.pagosAceptados"
+        >
+        {{ pago.nombre }}
+        </option>
+    </select>
+    </div>
+    <p>TOTAL: ${{total}}</p>
+    <div class="div-container-btn-donar">
+        <button class="button-donar" [disabled]="donacion.medioDePago == 0">DONAR</button>
+    </div>
+</form>
