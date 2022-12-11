@@ -14,6 +14,12 @@ export class LoginService {
   loguearse(data:string){
     this.logeado = true;
     localStorage.setItem("token", data);
+    localStorage.setItem("logeado", JSON.stringify(true));
+  }
+
+  desloguearse(){
+    localStorage.removeItem("token");
+    localStorage.setItem("logeado",JSON.stringify(false));
   }
 
   getLogueado(){

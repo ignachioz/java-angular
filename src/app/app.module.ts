@@ -26,6 +26,7 @@ import { UsuarioPerfilComponent } from './components/usuario-perfil/usuario-perf
 import { AdminComponent } from './components/admin/admin.component';
 import { EditarCategoriaComponent } from './components/editar-categoria/editar-categoria.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { EmprendimientoSuspendidoComponent } from './components/emprendimiento-suspendido/emprendimiento-suspendido.component';
 
 
 
@@ -48,7 +49,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     DonacionesPerfilComponent,
     UsuarioPerfilComponent,
     AdminComponent,
-    EditarCategoriaComponent
+    EditarCategoriaComponent,
+    EmprendimientoSuspendidoComponent
   ],
   imports: [
     BrowserModule,

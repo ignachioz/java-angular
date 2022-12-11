@@ -20,7 +20,7 @@ export interface emprendimientoResp {
     mangitosRecibidos?: Boolean;
     precioManguito: Number;
     isActivo?: Boolean;
-    mensajeSuspension?: String;
+    mensajeSuspension?: string;
     cantidadVisitas?: Number;
     cantidadManguitosRecibidos?: Number;
     id?: Number;

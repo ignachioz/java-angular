@@ -23,8 +23,7 @@ const routes: Routes = [
   },
   { 
     path: 'registrar-emprendimiento', 
-    component: RegistrarEmprendimientoComponent,
-    canActivate: [AuthGuardService]
+    component: RegistrarEmprendimientoComponent
   },
   {
     path: 'perfil',
@@ -46,9 +45,13 @@ const routes: Routes = [
     component: EditarCategoriaComponent,
     canActivate: [AuthGuardService]
   },
+  {
+    path: '404',
+    component: PageNotFoundComponent
+  },
   { 
     path: '**', 
-    component: PageNotFoundComponent
+    redirectTo: '/404'
   }
 
 ];

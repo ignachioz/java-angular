@@ -40,11 +40,11 @@ export class PerfilComponent implements OnInit{
     topDonadores: false,
     cantidadManguitosRecibidos: 0,
     mangitosRecibidos: false,
+    mensajeSuspension: '',
     redes: []
   }
 
   cargando = true;
-
 
   redes: Array<TipoRedSocial> = [];
 
@@ -63,7 +63,6 @@ export class PerfilComponent implements OnInit{
       console.log(d);
       this.emprendimiento = d;
       this.emprendimiento.duenio.fechaNac =  new Date(this.emprendimiento.duenio.fechaNac).toISOString().split("T")[0];
-
       this.configuracionService.obtenerTipoRedes()
       .subscribe(d => {
         this.redes = d;

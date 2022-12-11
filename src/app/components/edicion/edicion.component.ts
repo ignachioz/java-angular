@@ -8,7 +8,6 @@ import { EmprendimientoService } from 'src/app/services/emprendimiento.service';
   styleUrls: ['./edicion.component.css']
 })
 export class EdicionComponent implements OnInit {
-  emprendimiento:any = {};
   clickEnElemento:string = "perfil";
   constructor(){
 

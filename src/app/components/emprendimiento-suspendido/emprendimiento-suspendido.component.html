@@ -1,0 +1,11 @@
+<div #mensaje>
+    <div class="container-suspension" *ngIf="mensajeSuspension!=''">
+        <p>{{mensajeSuspension}}</p>
+        <small>Por favor comuniquese con el administrador</small>
+        <button (click)="volver()">Volver al login</button>
+    </div>
+</div>
+
+<div *ngIf="mensajeSuspension==''">
+
+</div>

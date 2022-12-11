@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
 import { fromEvent, map, Observable } from 'rxjs';
 import { EmprendimientoService } from 'src/app/services/emprendimiento.service';
@@ -15,12 +15,23 @@ export class HomeComponent implements OnInit {
   emprendimiento: any = {};
   existe: Boolean = false;
   cargando:boolean = true;
+  esMiEmprendimiento:Boolean = false ;
   constructor(
     private emprendimientoService: EmprendimientoService,
     private router: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    private loginService: LoginService
-  ) {}
+    private loginService: LoginService,
+    private route:Router
+  ) {
+    this.router.params.subscribe((params) => {
+      let token = localStorage.getItem("token") || "";
+      let decodeToken:any = jwt_decode(token);
+      this.esMiEmprendimiento = decodeToken.idEmprendimiento == params["id"]; 
+    });
+  }
+
+  
+ 
 
   ngOnInit() {
     let id: String = '';
@@ -30,6 +41,10 @@ export class HomeComponent implements OnInit {
 
     this.emprendimientoService.obtenerDatosDelEmprendimiento(id).subscribe({
       next: (data) => {
+        if(data.mensajeSuspension !== "" && !this.esMiEmprendimiento){
+          this.route.navigate(["/404"]);
+          return;
+        }
         this.loginService.setEmprendimiento(data);
         this.existe = true;
         this.emprendimiento = data; 
