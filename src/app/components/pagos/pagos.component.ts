@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { emprendimientoResp } from 'src/app/interfaces/responseType';
+import { EmprendimientoResp, Feedback } from 'src/app/interfaces/responseType';
 import { Categoria } from 'src/app/models/Categoria';
 import { MedioDePago } from 'src/app/models/MedioDePago';
 import { ConfiguracionService } from 'src/app/services/configuracion.service';
 import { EmprendimientoService } from 'src/app/services/emprendimiento.service';
 import jwt_decode from 'jwt-decode';
+import { LoginService } from 'src/app/services/login.service';
 
 export interface BodyPagosCategorias{
   pagos: Array<number>,
@@ -27,57 +28,41 @@ export class PagosComponent implements OnInit{
     categorias: []
   }
 
-  feedback = {
+  feedback: Feedback = {
     mensaje: '',
     class: ''
   }
 
-  cargando = true;
+  cargando:boolean = true;
 
-  //hacerlo en el padre y pasarselo a los hijos.
-  emprendimiento:emprendimientoResp={
-    duenio:{
-      email: "",
-      fechaNac: "",
-      id: 0,
-      dni: 0
-    },
-    nombre: "",
-    descripcion: "",
-    categorias: [],
-    precioManguito: 0,
-    pagosAceptados: [],
-    banner: "asdasd",
-    topDonadores: false,
-    cantidadManguitosRecibidos: 0,
-    mangitosRecibidos: false,
-    redes: []
-  }
-
+  emprendimiento:EmprendimientoResp;
 
   constructor(
     private configuracionService:ConfiguracionService,
-    private emprendimientoService:EmprendimientoService
+    private emprendimientoService:EmprendimientoService,
+    private loginService:LoginService
   ){}
 
   ngOnInit(){
-    let token = localStorage.getItem("token") || "";
-    let decodeToken:any = jwt_decode(token);
-    this.emprendimientoService.obtenerDatosDelEmprendimiento(decodeToken.idEmprendimiento)
-    .subscribe(d=> {
-      this.emprendimiento=d
-      this.categoriasEmprendimiento.categorias = d.categorias.map(c => c.id)
-      this.categoriasEmprendimiento.pagos = d.pagosAceptados.map(p => p.id);
-    })
-    this.configuracionService.obtenerCategorias()
-    .subscribe(d => {
-      this.categorias = d;
-    })
-    this.configuracionService.obtenerMediosDePagos()
-    .subscribe(d => {
-      this.mediosDePagos = d;
-      this.cargando = false;
-    })
+    let decodeToken = this.loginService.getTokenDecode();
+    //leer del localStorage
+    if(decodeToken){
+      this.emprendimientoService.obtenerDatosDelEmprendimiento(decodeToken.idEmprendimiento)
+      .subscribe(d=> {
+        this.emprendimiento=d
+        this.categoriasEmprendimiento.categorias = d.categorias.map(c => c.id)
+        this.categoriasEmprendimiento.pagos = d.pagosAceptados.map(p => p.id);
+      })
+      this.configuracionService.obtenerCategorias()
+      .subscribe(d => {
+        this.categorias = d;
+      })
+      this.configuracionService.obtenerMediosDePagos()
+      .subscribe(d => {
+        this.mediosDePagos = d;
+        this.cargando = false;
+      })
+    }
   }
 
 

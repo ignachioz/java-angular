@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Feedback } from 'src/app/interfaces/responseType';
 import { Categoria } from 'src/app/models/Categoria';
 import { ConfiguracionService } from 'src/app/services/configuracion.service';
 
@@ -9,12 +10,15 @@ import { ConfiguracionService } from 'src/app/services/configuracion.service';
   styleUrls: ['./editar-categoria.component.css'],
 })
 export class EditarCategoriaComponent implements OnInit {
-  feedback = {
+
+  feedback:Feedback = {
     mensaje: '',
     class: '',
   };
 
   edicion: boolean = false;
+
+  cargando: boolean = false;
 
   categoria: Categoria = {
     id: 0,
@@ -31,9 +35,11 @@ export class EditarCategoriaComponent implements OnInit {
     this.router.params.subscribe((params) => {
       id = params['id'];
       if(id){
+        this.cargando = true;
         this.edicion = true;
         this.configuracionService.obtenerCategoria(id).subscribe((d) => {
           this.categoria = d;
+          this.cargando = false;
         });
       }
     });
@@ -72,7 +78,6 @@ export class EditarCategoriaComponent implements OnInit {
     
     this.configuracionService.crearCategoria(this.categoria.nombre).subscribe({
       next: (d) => {
-        console.log(d);
         this.feedback.mensaje = 'La categoria ha sido creada con exito';
         this.feedback.class = 'alert-success';
       },

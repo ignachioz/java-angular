@@ -1,5 +1,4 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { emprendimientoResp } from './interfaces/responseType';
 import { LoginService } from './services/login.service';
 
 @Component({

@@ -1,0 +1,6 @@
+<div *ngIf="emprendimiento">
+    <app-top-donadores *ngIf="emprendimiento.topDonadores && donaciones" [donaciones]="donaciones"></app-top-donadores>
+    <div>
+        <app-manguitos-donados *ngIf="emprendimiento.mangitosRecibidos && donaciones" [donaciones]="donaciones"></app-manguitos-donados>
+    </div>
+</div>

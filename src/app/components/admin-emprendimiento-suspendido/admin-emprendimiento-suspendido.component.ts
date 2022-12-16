@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Feedback } from 'src/app/interfaces/responseType';
 import { EmprendimientoService } from 'src/app/services/emprendimiento.service';
 
 @Component({
@@ -9,18 +10,18 @@ import { EmprendimientoService } from 'src/app/services/emprendimiento.service';
 })
 export class AdminEmprendimientoSuspendidoComponent {
 
+  mensajeSuspension:string = '';
+  mostrar:boolean = false;
+  feedback:Feedback = {
+    mensaje: '',
+    class: ''
+  }
+  
   constructor(
     private emprendimientoService:EmprendimientoService,
     private route:ActivatedRoute
   ) {}
 
-  mensajeSuspension:string = '';
-  mostrar:boolean = false;
- // @Input() mensajeSuspension:string = "";
-  feedback = {
-    mensaje: '',
-    class: ''
-  }
   suspenderEmprendimiento(){
       let id = ''
       this.route.params.subscribe((params) => {          

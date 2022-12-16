@@ -1,6 +1,6 @@
 export class MedioDePago{
     constructor(
-        public nombre:String,
+        public nombre:string,
         public id:number
     ){}
 }

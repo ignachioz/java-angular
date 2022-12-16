@@ -46,37 +46,35 @@ export class NavbarComponent implements OnInit, OnChanges{
     let logeado = localStorage.getItem('logeado');
     if(logeado == "true"){
       this.logeado = true;
-      let token = localStorage.getItem("token") || "";
-      let decodeToken:any = {};
-      if(token !== ''){
-        decodeToken = jwt_decode(token);  //armar interface de token
-      }
-      if(decodeToken.esAdmin){
-        this.opciones = [
-          {
-            titulo: "Explorar",
-            url: "/explorar"
-          },
-          {
-            titulo: "Inicio",
-            url: "/admin"
-          }
-        ]
-      }else{
-        this.opciones = [
-          {
-            titulo: "Inicio",
-            url: "/emprendimiento/"+decodeToken.idEmprendimiento
-          },
-          {
-            titulo: "Explorar",
-            url: "/explorar"
-          },
-          {
-            titulo: "Editar perfil",
-            url: "/perfil"
-          }
-        ]
+      let decodeToken = this.loginService.getTokenDecode();
+      if(decodeToken){
+        if(decodeToken.esAdmin){
+          this.opciones = [
+            {
+              titulo: "Explorar",
+              url: "/explorar"
+            },
+            {
+              titulo: "Inicio",
+              url: "/admin"
+            }
+          ]
+        }else{
+          this.opciones = [
+            {
+              titulo: "Inicio",
+              url: "/emprendimiento/"+decodeToken.idEmprendimiento
+            },
+            {
+              titulo: "Explorar",
+              url: "/explorar"
+            },
+            {
+              titulo: "Editar perfil",
+              url: "/perfil"
+            }
+          ]
+        }
       }
     }else{
       this.logeado = false;

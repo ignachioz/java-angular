@@ -8,6 +8,8 @@ import { ConfiguracionService } from 'src/app/services/configuracion.service';
 import { EmprendimientoService } from 'src/app/services/emprendimiento.service';
 import { UserService } from 'src/app/services/user.service';
 import jwt_decode from "jwt-decode";
+import { Feedback } from 'src/app/interfaces/responseType';
+import { LoginService } from 'src/app/services/login.service';
 
 export interface emprendimientoForm{
   email: string,
@@ -30,7 +32,7 @@ export interface emprendimientoForm{
 export class RegistrarEmprendimientoComponent implements OnInit {
   categorias: Array<Categoria> = [];
   mediosDePagos: Array<MedioDePago> = [];
-  archivo: any;
+  //archivo: File;
   emprendimiento:emprendimientoForm={
     email: "",
     dni: "",
@@ -44,7 +46,7 @@ export class RegistrarEmprendimientoComponent implements OnInit {
     mediosDePagos: []
   }
 
-  feedback = {
+  feedback: Feedback = {
     class: "",
     mensaje: ""
   }
@@ -52,7 +54,8 @@ export class RegistrarEmprendimientoComponent implements OnInit {
   constructor(private userService:UserService, 
     private emprendimientoService:EmprendimientoService,
     private configuracionService:ConfiguracionService,
-    private router:Router
+    private router:Router,
+    private loginService:LoginService
   ){
     
   }
@@ -82,12 +85,11 @@ export class RegistrarEmprendimientoComponent implements OnInit {
     this.userService.registrarUsuarioEmprendimiento(this.emprendimiento)
     .subscribe({
       next: (data) =>{
-        localStorage.setItem("token", data.msg);
-        localStorage.setItem("logeado",JSON.stringify(true));
-        let token = localStorage.getItem("token") || "";
-        let decodeToken:any = jwt_decode(token);
-        console.log(decodeToken);
-        this.router.navigate([`/emprendimiento/${decodeToken.idEmprendimiento}`])
+        this.loginService.loguearse(data.msg);
+        let decodeToken = this.loginService.getTokenDecode();
+        if(decodeToken){
+          this.router.navigate([`/emprendimiento/${decodeToken.idEmprendimiento}`])
+        }
       },
       error: (e) => {
         this.feedback.class = "alert-danger";
@@ -95,10 +97,10 @@ export class RegistrarEmprendimientoComponent implements OnInit {
       }
     }); 
   }
-
+/* 
   capturarFile(event:any){
     this.archivo = event.target.files[0];
-  }
+  } */
 
 
 }

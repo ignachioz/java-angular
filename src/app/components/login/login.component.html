@@ -1,6 +1,7 @@
 <main class="container-login">
-    <section class="section-login">
-        <form class="form-login" method="post">
+  <section class="section-login">
+        <app-feedback [feedback]="feedback"></app-feedback>
+        <form class="form-login" method="post" (ngSubmit)="login()">
             <h1>Inicio de sesión</h1>
             <div class="div-input-login">
               <input
@@ -8,7 +9,7 @@
                 [(ngModel)]="email"
                 name="email"
                 placeholder="Ingrese su email"
-                required="required"
+                required
               />
             </div>
             <div class="div-input-login">
@@ -16,11 +17,11 @@
                 type="password"
                 [(ngModel)]="password"
                 name="password"
-                placeholder="Ingrese su password"
-                required="required"
+                placeholder="Ingrese su contraseña"
+                required
               />
             </div>
-            <button class="btn-login" type="submit" (click)="login()">Ingresar</button>
+            <button class="btn-login" type="submit" >Ingresar</button>
           </form>
     </section>
 </main>

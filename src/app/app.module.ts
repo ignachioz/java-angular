@@ -29,6 +29,11 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { EmprendimientoSuspendidoComponent } from './components/emprendimiento-suspendido/emprendimiento-suspendido.component';
 import { ExplorarComponent } from './components/explorar/explorar.component';
 import { AdminEmprendimientoSuspendidoComponent } from './components/admin-emprendimiento-suspendido/admin-emprendimiento-suspendido.component';
+import { DonacionesTopMomentaneasComponent } from './components/donaciones-top-momentaneas/donaciones-top-momentaneas.component';
+import { ManguitosDonadosComponent } from './components/manguitos-donados/manguitos-donados.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { AuthGuardLoginService } from './services/auth-guard-login.service';
+import { FeedbackComponent } from './components/feedback/feedback.component';
 
 
 
@@ -54,19 +59,24 @@ import { AdminEmprendimientoSuspendidoComponent } from './components/admin-empre
     EditarCategoriaComponent,
     EmprendimientoSuspendidoComponent,
     ExplorarComponent,
-    AdminEmprendimientoSuspendidoComponent
+    AdminEmprendimientoSuspendidoComponent,
+    DonacionesTopMomentaneasComponent,
+    ManguitosDonadosComponent,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [
     UserService,
     EmprendimientoService,
     ConfiguracionService,
-    AuthGuardService
+    AuthGuardService,
+    AuthGuardLoginService
   ],
   bootstrap: [AppComponent]
 })

@@ -13,8 +13,7 @@
         </section>
         <section class="container-emprendimientos">
             <div class="container-buscador">
-                <input type="text" placeholder="Ingrese el emprendimiento a buscar">
-                <input type="button" value="BUSCAR">
+                <input type="text" placeholder="Ingrese el emprendimiento a buscar"  [(ngModel)]="buscador" (input)="filtrarPorBusqueda()">
             </div>
             <div>
                 <div class="container-mas-vistos-donaciones">
@@ -22,9 +21,12 @@
                     <span (click)="masDonaciones()" [ngClass]="{'underline':meClickearon=='mas-donaciones'}">Mas manguitos recibidos</span>
                 </div>
                 <div class="container-emprendimientos-list">
-                    <article *ngFor="let emprendimiento of emprendimientosFiltrados" class="card-emprendimiento">
+                    <article 
+                        *ngFor="let emprendimiento of emprendimientosFiltrados | paginate: { itemsPerPage:5, currentPage: page}" 
+                        class="card-emprendimiento"
+                    >
                         <p>{{emprendimiento.nombre}}</p>
-                        <p>{{emprendimiento.categorias[0].nombre}}</p>
+                        <p>{{emprendimiento.categorias.length === 0? 'No posee categoria':emprendimiento.categorias[0].nombre}}</p>
                         <div class="d-flex">
                             <img src="/assets/manguito.jpg" alt="manguito" style="width: 20px; height: 20px;">
                             <span>x {{emprendimiento.cantidadManguitosRecibidos}}recibidos</span>
@@ -34,6 +36,9 @@
                     <article *ngIf="emprendimientosFiltrados.length === 0">
                         <p class="font-weight-bold">No hay emprendimientos para el filtro aplicado</p>
                     </article>
+                </div>
+                <div class="pagination-controls">
+                    <pagination-controls class="mi-paginacion" (pageChange)="page = $event" (pageBoundsCorrection)="boundsPage($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
                 </div>
             </div>
         </section>

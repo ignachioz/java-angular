@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { emprendimientoResp } from 'src/app/interfaces/responseType';
+import { EmprendimientoResp } from 'src/app/interfaces/responseType';
 import { Categoria } from 'src/app/models/Categoria';
 import { ConfiguracionService } from 'src/app/services/configuracion.service';
 import { EmprendimientoService } from 'src/app/services/emprendimiento.service';
@@ -11,11 +11,13 @@ import { EmprendimientoService } from 'src/app/services/emprendimiento.service';
   styleUrls: ['./explorar.component.css']
 })
 export class ExplorarComponent implements OnInit{
-  emprendimientos:Array<emprendimientoResp> = [];
-  emprendimientosFiltrados:Array<emprendimientoResp> = [];
+  emprendimientos:Array<EmprendimientoResp> = [];
+  emprendimientosFiltrados:Array<EmprendimientoResp> = [];
   categorias:Array<Categoria> = [];
   cargando:boolean = true;
   meClickearon:string = "mas-vistos";
+  buscador:string = "";
+  page: number = 1;
   constructor(
     private emprendimientoService:EmprendimientoService,
     private configuracionService:ConfiguracionService,
@@ -51,6 +53,14 @@ export class ExplorarComponent implements OnInit{
 
   irAlEmprendimiento(id:any){
     this.router.navigate(["/emprendimiento/"+id])
+  }
+
+  filtrarPorBusqueda(){
+    this.emprendimientosFiltrados = this.emprendimientos.filter(e => e.nombre.toLowerCase().startsWith(this.buscador.toLowerCase()));
+  }
+
+  boundsPage(page:number){
+    this.page = page;
   }
 
 }

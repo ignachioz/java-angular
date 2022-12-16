@@ -3,7 +3,7 @@ import { Usuario } from "./Usuario";
 
 export class UsuarioEmprendimiento {
     constructor(
-        public duenio:String,
+        public duenio:string,
         public miEmprendimiento: Emprendimiento
     ){}
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Feedback } from 'src/app/interfaces/responseType';
 import { Categoria } from 'src/app/models/Categoria';
 import { ConfiguracionService } from 'src/app/services/configuracion.service';
 
@@ -10,7 +11,7 @@ import { ConfiguracionService } from 'src/app/services/configuracion.service';
 })
 export class AdminComponent implements OnInit{
 
-  feedback = {
+  feedback: Feedback = {
     mensaje: '',
     class: ''
   }

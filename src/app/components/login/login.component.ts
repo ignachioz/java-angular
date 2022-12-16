@@ -5,6 +5,7 @@ import { first, catchError, of } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import jwt_decode from "jwt-decode";
 import { LoginService } from 'src/app/services/login.service';
+import { Feedback, TokenDecode } from 'src/app/interfaces/responseType';
 
 
 @Component({
@@ -13,8 +14,13 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-  email:String = "";
-  password:String = "";
+  email:string = "";
+  password:string = "";
+
+  feedback: Feedback = {
+    mensaje: '',
+    class: ''
+  }
 
   constructor(
     private userService:UserService,
@@ -25,7 +31,14 @@ export class LoginComponent implements OnInit{
   ngOnInit(){}
 
   login(){
-    this.userService.queryPOST("login",{
+    if(this.email == '' || this.password == ''){
+      this.feedback = {
+        mensaje: 'No puede haber campos vacios',
+        class: 'alert-danger'
+      }
+      return ;
+    }
+    this.userService.obtenerUsuarioLogin({
       email: this.email,
       password: this.password
     })
@@ -33,9 +46,7 @@ export class LoginComponent implements OnInit{
       next:(data) => {
         if(data.status == "OK"){
           this.loginService.loguearse(data.msg);
-          let token = localStorage.getItem("token") || "";
-          let decodeToken:any = jwt_decode(token);
-          console.log(decodeToken);
+          let decodeToken:TokenDecode = this.loginService.getTokenDecode();
           if(decodeToken.esAdmin){
             this.router.navigate(["/admin"]);
             return;
@@ -44,7 +55,17 @@ export class LoginComponent implements OnInit{
         }
       },
       error: (err) => {
-        console.log(err.error.msg);
+        if(err.status == 404){
+          this.feedback = {
+            mensaje: err.error.msg,
+            class: 'alert-danger'
+          }
+        }else{
+          this.feedback = {
+            mensaje: "Problemas internos del servidor intentelo más tarde",
+            class: 'alert-danger'
+          }
+        }
       }
     })
   }

@@ -1,5 +1,5 @@
-<span>TOP DONADORES</span>
-<table class="w-100" style="height: 100%">
+<span class="d-block mt-5">TOP DONADORES</span>
+<table class="w-100 mb-5" style="height: 100%">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -10,8 +10,11 @@
   <tbody>
     <tr *ngFor="let donacion of donaciones; index as i">
       <th scope="row">{{ i + 1 }}</th>
-      <td>{{ donacion.nombre==""?"Anonimo":donacion.nombre }}</td>
+      <td>{{ donacion.nombre == "" ? "Anonimo" : donacion.nombre.length>15?donacion.nombre.slice(0,30)+'...':donacion.nombre }}</td>
       <td>{{ donacion.cantidad }}</td>
+    </tr>
+    <tr *ngIf="donaciones.length === 0">
+      No hay donaciones
     </tr>
   </tbody>
 </table>

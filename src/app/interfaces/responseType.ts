@@ -1,4 +1,5 @@
 import { Categoria } from "../models/Categoria";
+import { Donacion } from "../models/Donacion";
 import { MedioDePago } from "../models/MedioDePago";
 import { RedSocial } from "../models/RedSocial";
 import { Usuario } from "../models/Usuario";
@@ -11,41 +12,68 @@ export interface RespuestaLogin {
 
 
 
-export interface emprendimientoResp {
-    nombre: String;
+export interface EmprendimientoResp {
+    nombre: string;
     categorias: Array<Categoria>;
     banner: string;
-    descripcion: String;
-    topDonadores?: Boolean;
-    mangitosRecibidos?: Boolean;
-    precioManguito: Number;
-    isActivo?: Boolean;
+    descripcion: string;
+    topDonadores?: boolean;
+    mangitosRecibidos?: boolean;
+    precioManguito: number;
+    isActivo?: boolean;
     mensajeSuspension?: string;
-    cantidadVisitas?: Number;
-    cantidadManguitosRecibidos?: Number;
-    id?: Number;
+    cantidadVisitas?: number;
+    cantidadManguitosRecibidos?: number;
+    id?: number;
     duenio: Usuario;
     pagosAceptados: Array<MedioDePago>;
     redes: Array<RedSocial>;
 }
 
 export interface donacion{
-    id: Number,
-    cantidad: Number,
+    id: number,
+    cantidad: number,
     fecha: Date,
     medioDePago: Object,
-    mensaje: String,
-    nombre: String,
-    precioManguito: Number
+    mensaje: string,
+    nombre: string,
+    precioManguito: number
 }
   
 
 export interface donacionRealizada{
-    msg:String,
-    status: String
+    msg: string,
+    status: string
 }
 
 export interface SuspensionEmprendimiento{
     status:string,
     msg:string
+}
+
+export interface TokenDecode {
+    email: string, 
+    esAdmin: boolean,
+    iat: number,
+    idEmprendimiento: string,
+    iss:string,
+    sub: string
+}
+
+export interface Feedback {
+    mensaje: string,
+    class: string
+}
+
+export interface FormDonacion{
+    nombre:string;
+    contacto:string;
+    mensaje:string;
+    medioDePago:number;
+    cantidad:number;
+}
+
+export interface UsuarioLogin{
+    email: string;
+    password: string;
 }

@@ -1,11 +1,13 @@
-.div-container-section {
-  display: flex;
-}
-
 .div-container-left,
 .div-container-right {
   height: 50%;
-  width: 50%;
+  width: 100%;
+}
+
+.red-social {
+  background: #f6d6d6;
+  padding: 20px;
+  border-radius: 20px;
 }
 
 .div-container-right{

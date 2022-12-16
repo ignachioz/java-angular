@@ -2,24 +2,8 @@
     <span class="sr-only">Loading...</span>
 </div>
 <app-emprendimiento-suspendido [mensajeSuspension]="emprendimiento.mensajeSuspension || ''"></app-emprendimiento-suspendido>
-<section class="font-weight-bold" *ngIf="!cargando">
-  <div
-    *ngIf="feedback.mensaje"
-    class="alert alert-dismissible fade show"
-    [ngClass]="feedback.class"
-    role="alert"
-  >
-    <strong>{{ feedback.mensaje }}</strong>
-    <button
-      type="button"
-      class="close"
-      data-dismiss="alert"
-      aria-label="Close"
-      (click)="feedback.mensaje = ''"
-    >
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+<section class="font-weight-bold" *ngIf="!cargando && emprendimiento">
+ <app-feedback [feedback]="feedback"></app-feedback>
   <form
     class="bg-white p-2 form-container"
     method="post"

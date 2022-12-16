@@ -1,4 +1,8 @@
-<app-emprendimiento-suspendido [mensajeSuspension]="emprendimiento.mensajeSuspension || ''"></app-emprendimiento-suspendido>
+<app-emprendimiento-suspendido 
+    *ngIf="emprendimiento"
+    [mensajeSuspension]="emprendimiento.mensajeSuspension || ''"
+>
+</app-emprendimiento-suspendido>
 <main class="main-container">
     <div class="spinner-border d-flex justify-content-center" role="status" *ngIf="cargando">
         <span class="sr-only">Loading...</span>
@@ -15,7 +19,7 @@
                 <h2 style="margin-bottom: 0px;">{{emprendimiento.nombre}}</h2>
                 <h4 style="margin-top: 0px;">{{emprendimiento.categorias ? emprendimiento.categorias[0].nombre : null}}</h4>
             </article>
-            <article class="article-container-ul-nav">
+            <article class="article-container-ul-nav" *ngIf="esMiEmprendimiento">
                 <ul class="ul-container-nav">
                     <li><a>Planes</a></li>
                     <li><a routerLink="/perfil" style="text-decoration: none;">Perfil</a></li>

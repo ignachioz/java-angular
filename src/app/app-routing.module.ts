@@ -10,7 +10,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import { EditarCategoriaComponent } from './components/editar-categoria/editar-categoria.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ExplorarComponent } from './components/explorar/explorar.component';
-
+import {LoginService} from "./services/login.service"
+import { AuthGuardLoginService } from './services/auth-guard-login.service';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: "login",
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [AuthGuardLoginService]
   },
   { 
     path: 'registrar-emprendimiento', 
@@ -48,6 +50,11 @@ const routes: Routes = [
   {
     path: 'explorar',
     component: ExplorarComponent
+  },
+  {
+    path: '',
+    pathMatch: 'full', 
+    redirectTo: '/login'
   },
   {
     path: '404',

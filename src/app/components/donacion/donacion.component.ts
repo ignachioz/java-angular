@@ -1,15 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { EmprendimientoResp, Feedback, FormDonacion } from 'src/app/interfaces/responseType';
+import { Donacion } from 'src/app/models/Donacion';
 import { EmprendimientoService } from 'src/app/services/emprendimiento.service';
-
-
-export interface formDonacion{
-  nombre:String;
-  contacto:String;
-  mensaje:String;
-  medioDePago:number;
-  cantidad:number;
-}
 
 @Component({
   selector: 'app-donacion',
@@ -17,12 +10,13 @@ export interface formDonacion{
   styleUrls: ['./donacion.component.css']
 })
 export class DonacionComponent implements OnInit {
-
-  @Input() emprendimiento: any;
+  
+  @Input() emprendimiento: EmprendimientoResp;
+  @Output('nuevaDonacion') donacionNueva = new EventEmitter<Donacion>();
 
   total:number = 0;
   cantidadManguito:number = 1;
-  donacion:formDonacion = {
+  donacion:FormDonacion = {
     nombre: "",
     contacto: "",
     mensaje: "",
@@ -30,7 +24,7 @@ export class DonacionComponent implements OnInit {
     cantidad: 1
   }
 
-  feedback = {
+  feedback:Feedback = {
     mensaje: "",
     class: ""
   }
@@ -67,6 +61,16 @@ export class DonacionComponent implements OnInit {
         next: (d) => {
           this.feedback.mensaje = "Nueva donacion realizada con exito";
           this.feedback.class = "alert-success";
+          let {cantidad,mensaje,nombre} = this.donacion;
+          this.donacionNueva.emit(new Donacion(0,cantidad,new Date().toDateString(),{},mensaje,nombre,0));
+          this.total = this.emprendimiento.precioManguito;
+          this.donacion = {
+            nombre: "",
+            contacto: "",
+            mensaje: "",
+            medioDePago: 0,
+            cantidad: 1
+          }
         },
         error: (e) => {
           this.feedback.mensaje = "Problemas al realizar la donación, intentelo en otro momento";

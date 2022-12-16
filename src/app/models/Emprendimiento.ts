@@ -1,22 +1,23 @@
+import { Categoria } from "./Categoria";
 import { MedioDePago } from "./MedioDePago";
 
 export class Emprendimiento{
 
     constructor(
-        public nombre: String,
-        public categorias: Array<Object>,
-        public banner: String,
-        public descripcion: String,
-        public topDonadores: Boolean,
-        public manguitosRecibidos: Boolean,
-        public precioManguito: Number,
-        public isActivo: Boolean,
-        public mensajeSuspension: String,
-        public cantidadVisitas: Number,
-        public cantidadManguitosRecibidos: Number,
+        public nombre: string,
+        public categorias: Array<Categoria>,
+        public banner: string,
+        public descripcion: string,
+        public topDonadores: boolean,
+        public manguitosRecibidos: boolean,
+        public precioManguito: number,
+        public isActivo: boolean,
+        public mensajeSuspension: string,
+        public cantidadVisitas: number,
+        public cantidadManguitosRecibidos: number,
         public pagosAceptados:Array<MedioDePago>,
-        public id: Number
-    ){}
+        public id: number
+    ) {}
     
 
 }

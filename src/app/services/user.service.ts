@@ -1,8 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
-import { RespuestaLogin } from '../interfaces/responseType';
-import { UsuarioEmprendimiento } from '../models/UsuarioEmprendimiento';
+import { RespuestaLogin, UsuarioLogin } from '../interfaces/responseType';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,8 +17,9 @@ const urlAPI = 'http://localhost:8080/manguito/api/usuarios/';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  queryPOST(url: String, body: Object): Observable<RespuestaLogin> {
-    return this.http.post<RespuestaLogin>(urlAPI + url, body, httpOptions);
+
+  obtenerUsuarioLogin(body: UsuarioLogin){
+    return this.http.post<RespuestaLogin>(urlAPI + "login", body, httpOptions);
   }
 
   registrarUsuarioEmprendimiento(body:Object){

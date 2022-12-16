@@ -1,11 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
-import jwt_decode from 'jwt-decode';
-import { donacion, emprendimientoResp } from 'src/app/interfaces/responseType';
+import { EmprendimientoResp } from 'src/app/interfaces/responseType';
 import { Donacion } from 'src/app/models/Donacion';
-import { Emprendimiento } from 'src/app/models/Emprendimiento';
-import { EmprendimientoService } from 'src/app/services/emprendimiento.service';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-emprendimiento-data',
@@ -15,9 +11,9 @@ import { Location } from '@angular/common';
 export class EmprendimientoDataComponent implements OnInit {
 
   
-  @Input() emprendimiento: any;
+  @Input() emprendimiento: EmprendimientoResp;
   @Input('esMiEmprendimiento') esMiEmprendimiento:Boolean = false ;
-  
+  donacionNueva:Donacion;
   
   constructor(private route:ActivatedRoute, private router:Router){}
   
@@ -25,5 +21,9 @@ export class EmprendimientoDataComponent implements OnInit {
   }
 
   ngOnChanges(){}
+
+  nuevaDonacion(donacion:Donacion){
+    this.donacionNueva = donacion;
+  }
   
 }
